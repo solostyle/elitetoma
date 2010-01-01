@@ -1,0 +1,3 @@
+# ignore any files that have tildes after them
+*~
+*.swp
