@@ -1,0 +1,108 @@
+/* Essentials */
+
+body {
+	margin:0;
+	padding:0;
+}
+
+#container {
+	margin: 0 auto;
+	padding-left: 12.90625em;		/* 200 + 15 + 7.5 / 16px */
+	padding-right:.9375em;			/* 15 / 16px */
+}
+
+.col {
+	float:left;
+	position:relative;
+	padding:0 .46875em;		/* because all columns have 7.5px padding, */
+	                                /* there's a total of 15px in the gutters  */
+}
+
+#main {
+	width:100%;
+	overflow-y:auto;
+}
+
+#nav {
+	width:11.5em;
+	margin-left:-100%;
+	right:13.375em;
+	z-index:9990;
+}
+
+#footer {
+	z-index:9999;
+	position:absolute;
+	width:100%;
+}
+
+/* Basic formatting */
+
+body {
+	font:normal 12px sans-serif;
+	background-color:#a93;
+}
+
+#main {
+	background-color:#ba5;
+	height:100%;			/* calculate height based on innerHeight */
+}
+
+#nav {
+	background-color:#a93;
+}
+
+#nav ol {
+	list-style-type:none;
+	padding:10px 0;
+	margin:0;
+}
+
+#nav li {
+	padding:5px 10px;
+}
+
+#nav li:hover {
+	background-color:#ba5;
+}
+
+#footer {
+	border-top:1px solid #960;
+}
+
+#footer ol {
+	list-style-type:none;
+	padding:0;
+	margin:0 0 0 20px;
+}
+
+#footer li {
+	border-left:1px solid #960;
+	padding:0 5px;
+	display:inline;
+	line-height:2em;
+}
+
+#footer li:first-child {
+	border:0;
+	padding-left:0;
+}
+
+h1, p {
+	padding:10px;
+	margin:0;
+}
+
+h1:hover, p:hover {
+	background-color:#a33;
+}
+
+a, a:link, a:visited {
+	text-decoration:none;
+	color:#922;
+}
+
+a:hover, a:active {
+	color:#611;
+	border-bottom:1px dotted #611;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Elite Traditional Oriental Martial Arts</title>
+<style type="text/css">
+  @import url('nav.css');
+</style>
+
+<script language="JavaScript">
+<!--
+// On load, find out if text-only browser is being used
+// If so
+// 		document.getElementById('headers').style.display='';
+// 		document.getElementById('links').style.display='';
+//		document.getElementById('infobox').h1.style.display='inline';
+// If not
+// 		document.getElementById('infobox').h1.style.display='';
+
+function mouseovereffect(hel, pel) {
+	document.getElementById(pel).style.display='block';
+	document.getElementById(hel).style.color='white';
+}
+function mouseouteffect(hel, pel) {
+	document.getElementById(pel).style.display='none';
+	document.getElementById(hel).style.color='#aaa';
+}
+// -->
+</script>
+
+</head>
+<body>
+
+<div id="headers">
+	<h1>
+		<span>Elite</span>
+		<span class="blink" id="ht" onMouseOver="mouseovereffect('ht','pt')" onmouseout="mouseouteffect('ht','pt')">T</span>
+		<span class="blink" id="ho" onMouseOver="mouseovereffect('ho','po')" onMouseOut="mouseouteffect('ho','po')">O</span>
+		<span class="blink" id="hm" onMouseOver="mouseovereffect('hm','pm')" onMouseOut="mouseouteffect('hm','pm')">M</span>
+		<span class="blink" id="ha" onMouseOver="mouseovereffect('ha','pa')" onMouseOut="mouseouteffect('ha','pa')">A</span>
+	</h1>
+</div>
+
+<div id="infobox">
+	<div id="pt"><h1>Traditional</h1>
+		<p>Techniques and External Arts: Kicking, punching, self-defense, weapons training and other types of "hard" Martial Arts train our bodies and contributes to good health.</p></div>
+	<div id="po"><h1>Oriental</h1>
+		<p>Obedience and Respect: All of our training ultimately focuses back on respect, love and caring for our families, our neighbors and our country. A true martial artist uses their skills for the good of all, to help build better families, friendships, community, country and, ultimately, a better world.</p></div>
+	<div id="pm"><h1>Martial</h1>
+		<p>Drawings and paintings.</p></div>
+	<div id="pa"><h1>Arts</h1>
+		<p>solo at solostyle dot net</p></div>
+</div>
+
+</body>
+</html>
