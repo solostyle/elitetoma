@@ -5,4 +5,4 @@
 <a class="big" href="../../../comments/delete/<?php echo $comment['Comment']['id']?>">
 <span class="comment">Delete this comment</span>
 </a>
-<a class="big" href="../comments/viewall">View Comments</a>
+<a class="big" href="../../../comments/viewall">View Comments</a>
