@@ -1,1 +1,1 @@
-<a class="big" href="../comments/viewall">Comment successfully added. Click here to go back.</a>
+Comment successfully added. <a class="big" href="../comments/viewall">View Comments</a>

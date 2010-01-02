@@ -1,1 +1,1 @@
-<a class="big" href="../../comments/viewall">Comment successfully deleted. Click here to go back.</a>
+Comment successfully deleted. <a class="big" href="../../comments/viewall">View Comments</a>

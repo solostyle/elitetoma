@@ -12,18 +12,21 @@ class CommentsController extends Controller {
 	function viewall() {
 
 		$this->set('title','All Comments - My Comments App');
-		$this->set('comment',$this->Comment->selectAll());
+		$this->set('comments',$this->Comment->selectAll());
 	}
 
+
+/*doesn't like longtext. had to change the comment to be varchar(255) */
 	function add() {
-		$id = $_POST['tag'];
+		$comment = $_POST['comment'];
+		$name = $_POST['name'];
 		$this->set('title','Success - My Comments App');
-		$this->set('comment',$this->Comment->query('insert into comments (tag) values (\''.mysql_real_escape_string($id).'\')'));
+		$this->set('comment',$this->Comment->query('insert into comments (name,comment) values (\''.mysql_real_escape_string($name).'\',\''.mysql_real_escape_string($comment).'\')'));
 	}
 
 	function delete($id = null) {
 		$this->set('title','Success - My Comments App');
-		$this->set('comment',$this->Comment->query('delete from comments where tag = \''.mysql_real_escape_string($id).'\''));
+		$this->set('comment',$this->Comment->query('delete from comments where id = \''.mysql_real_escape_string($id).'\''));
 	}
 
 }
