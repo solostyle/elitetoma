@@ -75,13 +75,18 @@ function unregisterGlobals() {
 
 function callHook() {
 	global $url;
+	//print 'incoming url: ' . $url;
 
 	$urlArray = array();
 	$urlArray = explode("/",$url);
+	//print 'urlArray: ' . $urlArray;
 
 	$controller = $urlArray[0];
+	//print 'controller: ' . $controller;
 	array_shift($urlArray);
+	//print 'array shifted now: ' . $urlArray;
 	$action = $urlArray[0];
+	//print 'action: ' . $action;
 	array_shift($urlArray);
 	$queryString = $urlArray;
 
