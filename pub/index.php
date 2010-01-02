@@ -5,4 +5,4 @@ define('ROOT', dirname(dirname(__FILE__)));
 
 $url = $_GET['url'];
 
-require_once (ROOT . DS . 'library' . DS . 'bootstrap.php');
+require_once (ROOT . DS . 'lib' . DS . 'bootstrap.php');
