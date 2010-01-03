@@ -1,53 +1,55 @@
 <html>
 <head>
-<title><?php echo $title?></title>
+<title>My Comments Application</title>
 <style>
+body {
+ margin:10px;
+    background-color:#fff;
+ color:#666;
+     line-height:1.2em;
+ }
 .comment {
-width:400px;
+ width:400px;
+ font:normal normal normal 12px Georgia, serif;
+     background-color:#eee;
+ color:#666;
+ padding:5px;
+ margin:10px auto;
+ }
 
-}
+div.comment:hover {
+    background-color:#bcfc3d;
+ }
 
 input {
-	color:#222222;
-font-family:georgia,times;
-font-size:24px;
-font-weight:normal;
-line-height:1.2em;
-	color:black;
+color:#666;
+    font-family:georgia,times;
+    font-size:14px;
+    font-weight:normal;
+color:#333;
 }
 
- a {
-	color:#222222;
-font-family:georgia,times;
-font-size:24px;
-font-weight:normal;
-line-height:1.2em;
-	color:black;
+a {
+color:#666;
+    font-family:georgia,times;
+    font-weight:bold;
 	text-decoration:none;
-
 }
 
 a:hover {
-	background-color:#BCFC3D;
+	border-bottom:1px solid black;
 }
 h1 {
-color:#000000;
-font-size:41px;
-letter-spacing:-2px;
-line-height:1em;
-font-family:helvetica,arial,sans-serif;
-border-bottom:1px dotted #cccccc;
+    font-size:16px;
+    letter-spacing:-2px;
+    line-height:1em;
 }
 
 h2 {
-color:#000000;
-font-size:34px;
-letter-spacing:-2px;
-line-height:1em;
-font-family:helvetica,arial,sans-serif;
-
+    font-size:14px;
+    letter-spacing:-2px;
+    line-height:1em;
 }
 </style>
 </head>
 <body>
-<h1><?php echo $title?></h1>

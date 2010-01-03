@@ -126,9 +126,13 @@ function callHook() {
 	$dispatch = new $controllerName($controller,$action);
 	
 	if ((int)method_exists($controllerName, $action)) {
-		call_user_func_array(array($dispatch,"beforeAction"),$queryString);
+        if (method_exists($dispatch,"beforeAction")) {
+            call_user_func_array(array($dispatch,"beforeAction"), $queryString);
+        }
 		call_user_func_array(array($dispatch,$action),$queryString);
-		call_user_func_array(array($dispatch,"afterAction"),$queryString);
+        if (method_exists($dispatch,"afterAction")) {
+            call_user_func_array(array($dispatch,"afterAction"),$queryString);
+        }
 	} else {
 		/* Error Generation Code Here */
 	}
@@ -167,7 +171,7 @@ function gzipOutput() {
 
 /** Get Required Files **/
 
-gzipOutput() || ob_start("ob_gzhandler");
+//gzipOutput() || ob_start("ob_gzhandler");
 
 
 $cache =& new Cache();

@@ -11,4 +11,4 @@ define('DB_HOST', 'mysql.solostyle.net');
 
 define('BASE_PATH', 'http://test.solostyle.net/'); /* this means i can put elitetoma in its own folder within test.solostyle.net */
 
-define('PAGINATE_LIMIT'. '5');
+define('PAGINATE_LIMIT', '5');

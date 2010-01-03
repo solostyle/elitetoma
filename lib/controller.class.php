@@ -1,17 +1,23 @@
 <?php
 class Controller {
 
-	protected $_model;
 	protected $_controller;
 	protected $_action;
 	protected $_template;
 
-	function __construct($model, $controller, $action) {
+    public $doNotRenderHeader;
+    public $render;
 
-		$this->_controller = $controller;
+	function __construct($controller, $action) {
+
+        global $inflect;
+
+		$this->_controller = ucfirst($controller);
 		$this->_action = $action;
-		$this->_model = $model;
 
+        $model = ucfirst($inflect->singularize($controller));
+        $this->doNotRenderHeader = 0;
+        $this->render = 1;
 		$this->$model =& new $model;
 		$this->_template =& new Template($controller,$action);
 
@@ -22,7 +28,9 @@ class Controller {
 	}
 
 	function __destruct() {
-			$this->_template->render();
+        if ($this->render) {
+            $this->_template->render($this->doNotRenderHeader);
+        }
 	}
 
 }
