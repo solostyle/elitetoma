@@ -1,3 +1,6 @@
+<div id="container"></div>
+<form><input type="button" id="requestButton" value="Send a POST Request"></form>
+
 <h1>My Comments App</h1>
 
 <form action="../comments/add" method="post">
@@ -8,7 +11,7 @@
 
 <?php foreach ($comments as $c):?>
      
-     <div class="comment">
+     <div class="comment" id="comment<?php echo $c['Comment']['id']?>">
      <div class="id"><?php echo $c['Comment']['id']?></div>
      <div class="name"><?php echo $c['Comment']['name']?></div>
      <div class="time"><?php echo $c['Comment']['time']?></div>
@@ -17,3 +20,8 @@
      </div>
 
 <?php endforeach?>
+
+<!-- JS -->
+<script type="text/javascript" src="http://yui.yahooapis.com/combo?3.0.0/build/yui/yui-min.js"></script>
+<?php $html = new HTML();?>
+<?php echo $html->includeJs('generic');?>
