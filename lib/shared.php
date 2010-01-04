@@ -28,8 +28,7 @@
  */
 
 /** Check if environment is development and display errors **/
-
-function setReporting() {
+function SetReporting() {
     if (DEVELOPMENT_ENVIRONMENT == true) {
         error_reporting(E_ALL);
         ini_set('display_errors','On');
@@ -42,13 +41,12 @@ function setReporting() {
 }
 
 /** Check for Magic Quotes and remove them **/
-
 function stripSlashesDeep($value) {
 	$value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
 	return $value;
 }
 
-function removeMagicQuotes() {
+function RemoveMagicQuotes() {
     if ( get_magic_quotes_gpc() ) {
         $_GET    = stripSlashesDeep($_GET   );
         $_POST   = stripSlashesDeep($_POST  );
@@ -57,8 +55,7 @@ function removeMagicQuotes() {
 }
 
 /** Check register globals and remove them **/
-
-function unregisterGlobals() {
+function UnregisterGlobals() {
     if (ini_get('register_globals')) {
         $array = array('_SESSION', '_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
         foreach ($array as $value) {
@@ -72,7 +69,6 @@ function unregisterGlobals() {
 }
 
 /** Secondary Call Function **/
-
 function performAction($controller,$action,$queryString = null,$render = 0) {
 	
 	$controllerName = ucfirst($controller).'Controller';
@@ -82,7 +78,6 @@ function performAction($controller,$action,$queryString = null,$render = 0) {
 }
 
 /** Routing **/
-
 function routeURL($url) {
 	global $routing;
 
@@ -96,8 +91,7 @@ function routeURL($url) {
 }
 
 /** Main Call Function **/
-
-function callHook() {
+function CallHook() {
 	global $url;
 	global $default;
 
@@ -139,7 +133,6 @@ function callHook() {
 }
 
 /** Autoload any classes that are required **/
-
 function __autoload($className) {
 	if (file_exists(ROOT . DS . 'lib' . DS . strtolower($className) . '.class.php')) {
 		require_once(ROOT . DS . 'lib' . DS . strtolower($className) . '.class.php');
@@ -152,8 +145,8 @@ function __autoload($className) {
 	}
 }
 
+/** Disabled because not working on current server **/
 /** GZip Output **/
-
 function gzipOutput() {
     $ua = $_SERVER['HTTP_USER_AGENT'];
 
@@ -170,14 +163,13 @@ function gzipOutput() {
 }
 
 /** Get Required Files **/
-
 //gzipOutput() || ob_start("ob_gzhandler");
 
 
 $cache =& new Cache();
 $inflect =& new Inflection();
 
-setReporting();
-removeMagicQuotes();
-unregisterGlobals();
-callHook();
+SetReporting();
+RemoveMagicQuotes();
+UnregisterGlobals();
+CallHook();

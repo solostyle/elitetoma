@@ -6,6 +6,9 @@ $routing = array(
 	/* '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1/\2/\3' */
 );
 
-/* can specify default home page i guess? */
-$default['controller'] = 'categories';
+/* If the root domain name is requested
+   e.g. test.solostyle.net/
+   then this is where they will be directed
+**/
+$default['controller'] = 'comments';
 $default['action'] = 'index';

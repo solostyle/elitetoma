@@ -18,34 +18,17 @@ class SQLQuery {
     protected $_limit;
   
     /** Connects to database **/
-  
-    function connect($address, $account, $pwd, $name) {
+      function connect($address, $account, $pwd, $name) {
         $this->_dbHandle = @mysql_connect($address, $account, $pwd);
-        if ($this->_dbHandle != 0) {
-            if (mysql_select_db($name, $this->_dbHandle)) {
-                return 1;
-            }
-            else {
-                return 0;
-            }
-        }
-        else {
-            return 0;
-        }
+        return ($this->_dbHandle && mysql_select_db($name, $this->_dbHandle)) ? true:false;
     }
  
     /** Disconnects from database **/
-
     function disconnect() {
-        if (@mysql_close($this->_dbHandle) != 0) {
-            return 1;
-        }  else {
-            return 0;
-        }
+        return (@mysql_close($this->_dbHandle))?true:false;
     }
 
     /** Select Query **/
-
     function where($field, $value) {
         $this->_extraConditions .= '`'.$this->_model.'`.`'.$field.'` = \''.mysql_real_escape_string($value).'\' AND ';
     }
@@ -124,12 +107,12 @@ class SQLQuery {
         $table = array();
         $field = array();
         $tempResults = array();
-        $numOfFields = mysql_num_fields($this->_result);
+        $numOfFields = ($this->_result)? mysql_num_fields($this->_result) : 0;
         for ($i = 0; $i < $numOfFields; ++$i) {
             array_push($table,mysql_field_table($this->_result, $i));
             array_push($field,mysql_field_name($this->_result, $i));
         }
-        if (mysql_num_rows($this->_result) > 0 ) {
+        if ($this->_result && mysql_num_rows($this->_result) > 0 ) {
             while ($row = mysql_fetch_row($this->_result)) {
                 for ($i = 0;$i < $numOfFields; ++$i) {
                     $tempResults[$table[$i]][$field[$i]] = $row[$i];
@@ -243,7 +226,7 @@ class SQLQuery {
                 return($result);
             }
         } else {
-            mysql_free_result($this->_result);
+            if ($this->_result) mysql_free_result($this->_result);
             $this->clear();
             return $result;
         }
