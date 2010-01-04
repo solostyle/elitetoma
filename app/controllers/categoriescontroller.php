@@ -37,7 +37,7 @@ class CategoriesController extends VanillaController {
 
 	}
 
-    function new() {
+    function add() {
         $this->Category->id = $_POST['id'];
         $this->Category->name = $_POST['name'];
         $this->Category->save();
