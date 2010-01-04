@@ -21,13 +21,12 @@ class Template {
         if doNotRenderHeader is set, only the view is displayed.
         This is useful for handling AJAX requests.
     **/
-    function render($doNotRenderHeader = 0) {
+    function render($doNotRenderHeader = false) {
 		
 		$html = new HTML;
 		extract($this->variables);
 		
-		if ($doNotRenderHeader == 0) {
-			
+		if ($doNotRenderHeader == false) {
 			if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . 'header.php')) {
 				include (ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . 'header.php');
 			} else {
@@ -39,7 +38,7 @@ class Template {
 			include (ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . $this->_action . '.php');		 
 		}
 			
-		if ($doNotRenderHeader == 0) {
+		if ($doNotRenderHeader == false) {
 			if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . 'footer.php')) {
 				include (ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . 'footer.php');
 			} else {
