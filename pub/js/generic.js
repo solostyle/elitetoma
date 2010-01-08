@@ -1,27 +1,34 @@
-YUI({combine: true, timeout: 10000}).use("io", myFunction = function(Y) {
+if (this.elitetoma) {
+	// do nothing
+} else this.elitetoma = function() {
+
+	var ydom = YAHOO.util.Dom,
+	ycnxn = YAHOO.util.Connect,
+	ajaxR = function (url, callback) {
+		ycnxn.asyncRequest(callback.method, url, callback, callback.data);
+	},
+	yevent = YAHOO.util.Event,
+	listen = function (event, fn, elid) {
+		yevent.addListener(ydom.get(elid), event, fn);
+	};
 
 	// Elements
-	var div = Y.Node.get('#container');
-	var inpComment = function() {
-		return document.getElementById('comment').value;
-	};
-	var inpName = function() {
-		return document.getElementById('name').value;
-	};
-
+	var div = ydom.get('container'),
+	inpComment = function() {return ydom.get('comment').value;},
+	inpName = function() {return ydom.get('name').value;};
 
 	// Success and failure functions for different requests
-	var handleSuccess = function(ioId, o){
-		var indexRequest = Y.io('../comments/index',indexCallback);
+	var handleSuccess = function(o){
+		var indexRequest = ajaxR('../comments/index',indexCallback);
 	};
 
-	var handleFailure = function(ioId, o){
+	var handleFailure = function(o){
 		if(o.responseText !== undefined){
 			div.set("innerHTML", "request failure: " + o.responseText + div.get("innerHTML"));
 		}
 	};
 
-	var handleIndexSuccess = function(ioId,o) {
+	var handleIndexSuccess = function(o) {
 		// TODO: really i should make this place html into a container
 		document.write(o.responseText);
 	};
@@ -29,37 +36,34 @@ YUI({combine: true, timeout: 10000}).use("io", myFunction = function(Y) {
 	/* Callback/Config objects for transactions */
 	var callback = {
 		method: "POST",
-		on: {
-			success: handleSuccess,
-			failure: handleFailure
-		}
+		success: handleSuccess,
+		failure: handleFailure
 	};
 
 	var indexCallback ={
 		method:"GET",
-		on:{
-			success: handleIndexSuccess,
-			failure: handleFailure
-		}
+		success: handleIndexSuccess,
+		failure: handleFailure
 	};
-	
+
 
 	//Handler to make XHR request for adding a comment
 	function addCommentRequest(){
 		callback.data = 'comment='+inpComment()+'&name='+inpName();
-		var addRequest = Y.io('../comments/add', callback);
+		var addRequest = ajaxR('../comments/add', callback);
 	}
 
 	function deleteCommentRequest(id) {
 		callback.data = 'id='+id;
-		var deleteRequest = Y.io('../comments/delete', callback);
+		var deleteRequest = ajaxR('../comments/delete', callback);
 	}
 
 	function indexRequest() {
-		var indexRequest = Y.io('../comments/index', indexCallback);
+		var indexRequest = ajaxR('../comments/index', indexCallback);
 	}
+
 	// Make a request when the button is clicked:
-	Y.on("click", handleClick, "#container");
+	listen("click", handleClick, "container");
 
 	function handleClick(e) {
 		var targetId= e.target.getAttribute('id'),
@@ -77,4 +81,4 @@ YUI({combine: true, timeout: 10000}).use("io", myFunction = function(Y) {
 			break;
 		}
 	}
-});
+}();

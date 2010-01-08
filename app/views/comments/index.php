@@ -17,8 +17,11 @@
 
      <?php endforeach?>
 
-     <!-- JS -->
-     <script type="text/javascript" src="http://yui.yahooapis.com/combo?3.0.0/build/yui/yui.js"></script>
+     <!-- Individual YUI JS files --> 
      <?php $html = new HTML();?>
+     <?php echo $html->includeJs('yui27yahoo');?>
+     <?php echo $html->includeJs('yui27event');?>
+     <?php echo $html->includeJs('yui27connection');?>
+     <?php echo $html->includeJs('yui27dom');?>
      <?php echo $html->includeJs('generic');?>
 </div>

@@ -82,6 +82,7 @@ color:#666;
 
 a:hover {
 	border-bottom:1px solid black;
+cursor:pointer;
 }
 h1 {
     font-size:16px;
