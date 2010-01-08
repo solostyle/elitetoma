@@ -12,13 +12,13 @@
      <div class="name"><?php echo $c['Comment']['name']?></div>
      <div class="time"><?php echo $c['Comment']['time']?></div>
      <div class="text"><?php echo $c['Comment']['comment']?></div>
-     <a href="../comments/delete/<?php echo $c['Comment']['id']?>" id="deleteComment_<?php echo $c['Comment']['id']?>">Delete</a>
+     <a id="deleteComment_<?php echo $c['Comment']['id']?>">Delete</a>
      </div>
 
      <?php endforeach?>
 
      <!-- JS -->
-     <script type="text/javascript" src="http://yui.yahooapis.com/combo?3.0.0/build/yui/yui-min.js"></script>
+     <script type="text/javascript" src="http://yui.yahooapis.com/combo?3.0.0/build/yui/yui.js"></script>
      <?php $html = new HTML();?>
      <?php echo $html->includeJs('generic');?>
 </div>

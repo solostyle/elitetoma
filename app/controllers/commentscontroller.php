@@ -21,9 +21,9 @@ class CommentsController extends Controller {
 		$this->Comment->save();
 	}
 
-	function delete($id) {
+	function delete() {
         $this->doNotRenderHeader = true;
-        $this->Comment->id = $id;
+        $this->Comment->id = $_POST['id'];
         $this->Comment->delete();
 	}
 }
