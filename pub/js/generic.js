@@ -2,6 +2,7 @@ if (this.elitetoma) {
 	// do nothing
 } else this.elitetoma = function() {
 
+	// Libraries and functions
 	var ydom = YAHOO.util.Dom,
 	ycnxn = YAHOO.util.Connect,
 	ajaxR = function (url, callback) {
@@ -13,7 +14,7 @@ if (this.elitetoma) {
 	};
 
 	// Elements
-	var div = ydom.get('container'),
+	var divElem = ydom.get('container'),
 	inpComment = function() {return ydom.get('comment').value;},
 	inpName = function() {return ydom.get('name').value;};
 
@@ -24,13 +25,14 @@ if (this.elitetoma) {
 
 	var handleFailure = function(o){
 		if(o.responseText !== undefined){
-			div.set("innerHTML", "request failure: " + o.responseText + div.get("innerHTML"));
+			divElem.innerHTML = "request failure: " + o.responseText + divElem.innerHTML;
 		}
 	};
 
 	var handleIndexSuccess = function(o) {
-		// TODO: really i should make this place html into a container
-		document.write(o.responseText);
+		if(o.responseText !== undefined){
+			divElem.innerHTML = o.responseText;
+		}
 	};
 
 	/* Callback/Config objects for transactions */
@@ -46,26 +48,22 @@ if (this.elitetoma) {
 		failure: handleFailure
 	};
 
-
 	//Handler to make XHR request for adding a comment
-	function addCommentRequest(){
+	var addCommentRequest = function(){
 		callback.data = 'comment='+inpComment()+'&name='+inpName();
 		var addRequest = ajaxR('../comments/add', callback);
-	}
+	};
 
-	function deleteCommentRequest(id) {
+	var deleteCommentRequest = function(id) {
 		callback.data = 'id='+id;
 		var deleteRequest = ajaxR('../comments/delete', callback);
-	}
+	};
 
-	function indexRequest() {
+	var indexRequest = function() {
 		var indexRequest = ajaxR('../comments/index', indexCallback);
-	}
+	};
 
-	// Make a request when the button is clicked:
-	listen("click", handleClick, "container");
-
-	function handleClick(e) {
+	var handleClick = function(e) {
 		var targetId= e.target.getAttribute('id'),
 		// clean the id string, everything before a number
 		command = targetId.split('_', 2)[0],
@@ -80,5 +78,9 @@ if (this.elitetoma) {
 		default:
 			break;
 		}
-	}
+	};
+
+	// Make a request when the button is clicked:
+	listen("click", handleClick, "container");
+
 }();
