@@ -15,12 +15,14 @@ class CommentsController extends Controller {
 
 /*doesn't like longtext. had to change the comment to be varchar(255) */
 	function add() {
+        $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
 		$this->Comment->comment = $_POST['comment'];
 		$this->Comment->name = $_POST['name'];
 		$this->Comment->save();
 	}
 
 	function delete($id) {
+        $this->doNotRenderHeader = true;
         $this->Comment->id = $id;
         $this->Comment->delete();
 	}

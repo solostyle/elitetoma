@@ -12,7 +12,7 @@ p {
 font: normal normal normal 12px Georgia, serif;
  }
 
-form {
+#form {
 margin: 10px auto;
 width:400px;
 }
@@ -51,10 +51,26 @@ div.comment:hover {
 
 input {
 color:#666;
+    background-color:#fff;
     font-family:georgia,times;
     font-size:14px;
     font-weight:normal;
-color:#333;
+border:1px solid #ccc;
+padding:2px;
+}
+
+input:focus {
+border:1px solid #bcfc3d;
+}
+
+input#addComment {
+color:#666;
+    background-color:#fff;
+border:1px solid #ccc;
+}
+
+input#addComment:hover {
+    background-color:#bcfc3d;
 }
 
 a {

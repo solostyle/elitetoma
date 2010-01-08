@@ -1,66 +1,91 @@
 YUI({combine: true, timeout: 10000}).use("io",
 
-											   function(Y) {
+										 function(Y) {
 
-												   //Get a reference to the Node that we are using
-												   //to report results:
-												   var div = Y.Node.get('#container');
-
-												   //A function handler to use for successful requests:
-												   var handleSuccess = function(ioId, o){
-													   Y.log(arguments);
-													   Y.log("The success handler was called.  Id: " + ioId + ".", "info", "example");
-
-													   if(o.responseText !== undefined){
-														   var s = "<li>Transaction id: " + ioId + "</li>";
-														   s += "<li>HTTP status: " + o.status + "</li>";
-														   s += "<li>Status code message: " + o.statusText + "</li>";
-														   s += "<li>HTTP headers received: <ul>" + o.getAllResponseHeaders() + "</ul></li>";
-														   s += "<li>PHP response: " + o.responseText + "</li>";
-														   div.set("innerHTML", s);
-													   }
-												   };
-
-												   //A function handler to use for failed requests:
-												   var handleFailure = function(ioId, o){
-													   Y.log("The failure handler was called.  Id: " + ioId + ".", "info", "example");
-
-													   if(o.responseText !== undefined){
-														   var s = "<li>Transaction id: " + ioId + "</li>";
-														   s += "<li>HTTP status: " + o.status + "</li>";
-														   s += "<li>Status code message: " + o.statusText + "</li>";
-														   div.set("innerHTML", s);
-													   }
-												   };
-
-												   //Subscribe our handlers to IO's global custom events:
-												   Y.on('io:success', handleSuccess);
-												   Y.on('io:failure', handleFailure);
+											 // Elements
+											 var div = Y.Node.get('#container');
+											 var inpComment = function() {
+												 return document.getElementById('comment').value;
+											 };
+											 var inpName = function() {
+												 return document.getElementById('name').value;
+											 };
 
 
-												   /* Configuration object for POST transaction */
-												   var cfg = {
-													   method: "POST",
-													   data: "user=YDN&password=API",
-													   headers: { 'X-Transaction': 'POST Example'}
-												   };
+											 // Success and failure functions for different requests
+											 var handleSuccess = function(ioId, o){
+												 var indexRequest = Y.io('../comments/index',indexCallback);
+											 };
 
-												   //The URL of the resource to which we're POSTing data:
-												   var sUrl = "(assets/)post.php";
+											 var handleFailure = function(ioId, o){
+												 if(o.responseText !== undefined){
+													 var s = "<li>Transaction id: " + ioId + "</li>";
+													 s += "<li>HTTP status: " + o.status + "</li>";
+													 s += "<li>Status code message: " + o.statusText + "</li>";
+													 div.set("innerHTML", s+div.get("innerHTML"));
+												 }
+											 };
 
-												   //Handler to make our XHR request when the button is clicked:
-												   function makeRequest(){
+											 function handleIndexSuccess(ioId,o) {
+												 // TODO: really i should make this place html into a container
+												 document.write(o.responseText);
+											 }
 
-													   div.set("innerHTML", "Loading data from new request...");
 
-													   var request = Y.io(sUrl, cfg);
-													   Y.log("Initiating request; Id: " + request.id + ".", "info", "example");
+											 /* Callback/Config objects for transactions */
+											 var callback = {
+												 method: "POST",
+												 //data: 'comment='+inpComment()+'&name='+inpName(),
+												 headers: { 'X-Transaction': 'POST Example'},
+												 on: {
+													 success: handleSuccess,
+													 failure: handleFailure
+												 }
+											 };
 
-												   }
+											 var indexCallback ={
+												 method:"GET",
+												 on:{
+													 success: handleIndexSuccess,
+													 failure: handleFailure
+												 }
+											 };
+											 
 
-												   // Make a request when the button is clicked:
-												   Y.on("click", makeRequest, "#requestButton");
+											 //Handler to make XHR request for adding a comment
+											 function addCommentRequest(){
+												 callback.data = 'comment='+inpComment()+'&name='+inpName();
+												 var addRequest = Y.io('../comments/add', callback);
+											 }
 
-												   Y.log("As you interact with this example, relevant steps in the process will be logged here.", "info", "example");
-											   }
-											  );
+											 function deleteCommentRequest(id) {
+												 callback.data = 'id='+id;
+												 window.console.log(callback.data);
+												 var deleteRequest = Y.io('../comments/delete', callback);
+											 }
+
+											 function indexRequest() {
+												 var indexRequest = Y.io('../comments/index', indexCallback);
+											 }
+											 // Make a request when the button is clicked:
+											 Y.on("click", handleClick, "#container");
+
+											 function handleClick(e) {
+												 var targetId= e.target.getAttribute('id'),
+												 // clean the id string, everything before a number
+												 command = targetId.split('_', 2)[0],
+												 id = targetId.split('_', 2)[1];
+												 switch (command) {
+												 case "addComment": 
+													 addCommentRequest();
+													 break;
+												 case "deleteComment":
+													 deleteCommentRequest(id);
+													 break;
+												 default:
+													 break;
+												 }
+											 }
+											 
+										 }
+										);

@@ -16,7 +16,6 @@ class Controller {
 		$this->_action = $action;
 
         $model = ucfirst($inflect->singularize($controller));
-        $this->doNotRenderHeader = 0;
         $this->render = 1;
 		$this->$model =& new $model;
 		$this->_template =& new Template($controller,$action);
@@ -32,5 +31,4 @@ class Controller {
             $this->_template->render($this->doNotRenderHeader);
         }
 	}
-
 }
