@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>My Comments Application</title>
+<title>Testing my own MVC</title>
 <style>
 body {
  margin:10px;
@@ -12,40 +12,51 @@ p {
 font: normal normal normal 12px Georgia, serif;
  }
 
-#form {
-margin: 10px auto;
-width:400px;
+#container {
+ margin:10px auto;
+width:250px;
 }
 
-div.id {
+#addAComment {
+border:1px solid #eee;
+}
+
+#addAComment:hover {
+    background-color:#bcfc3d;
+}
+
+#form {
+display:none;
+}
+
+.id {
     float:right;
 }
 
-div.name {
+.name {
     font-style:italic;
     float:left;
 padding-right:5px;
 }
 
-div.time {
+.time {
     float:left;
 }
 
-div.text {
+.text {
 clear:both;
 padding:10px;
 }
 
-div.comment {
- width:400px;
+.comment {
  font:normal normal normal 12px Georgia, serif;
      background-color:#eee;
  color:#666;
  padding:5px;
- margin:10px auto;
+ margin:10px 0px;
  }
 
-div.comment:hover {
+.comment:hover {
     background-color:#bcfc3d;
  }
 
@@ -84,16 +95,18 @@ a:hover {
 	border-bottom:1px solid black;
 cursor:pointer;
 }
+
 h1 {
     font-size:16px;
     letter-spacing:-2px;
     text-align:center;
 }
 
-h2 {
+#addAComment h1 {
     font-size:14px;
     letter-spacing:-2px;
     text-align:center;
+font-weight:normal;
 }
 </style>
 </head>

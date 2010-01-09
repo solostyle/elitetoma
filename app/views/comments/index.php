@@ -1,9 +1,10 @@
-<div id="container">
-     <h1>My Comments App</h1>
+<div id="container"> 
+     <h1 id="addAComment">Add a Comment</h1>
      <div id="form"
      <p>name: <input type="text" value="moniker" onclick="this.value=''" id="name"/></p>
      <p>comment: <input type="text" value="I just want to say..." onclick="this.value=''" id="comment"/>
-     <input type="button" id="addComment" value="add"/></p></div>
+     <input type="button" id="addComment" value="add"/></p>
+     </div><!-- end form div -->
 
      <?php foreach ($comments as $c):?>
      
@@ -17,6 +18,8 @@
 
      <?php endforeach?>
 
+</div>
+
      <!-- Individual YUI JS files --> 
      <?php $html = new HTML();?>
      <?php echo $html->includeJs('yui27yahoo');?>
@@ -24,4 +27,3 @@
      <?php echo $html->includeJs('yui27connection');?>
      <?php echo $html->includeJs('yui27dom');?>
      <?php echo $html->includeJs('generic');?>
-</div>

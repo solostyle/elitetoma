@@ -16,7 +16,9 @@ if (this.elitetoma) {
 	// Elements
 	var divElem = ydom.get('container'),
 	inpComment = function() {return ydom.get('comment').value;},
-	inpName = function() {return ydom.get('name').value;};
+	inpName = function() {return ydom.get('name').value;},
+	addDiv = ydom.get('addAComment'),
+	formDiv = ydom.get('form');
 
 	// Success and failure functions for different requests
 	var handleSuccess = function(o){
@@ -63,6 +65,10 @@ if (this.elitetoma) {
 		var indexRequest = ajaxR('../comments/index', indexCallback);
 	};
 
+	var toggleForm = function() {
+		formDiv.style.display=(formDiv.style.display=='none')?'block':'none';
+	};
+
 	var handleClick = function(e) {
 		var targetId= e.target.getAttribute('id'),
 		// clean the id string, everything before a number
@@ -74,6 +80,9 @@ if (this.elitetoma) {
 			break;
 		case "deleteComment":
 			deleteCommentRequest(id);
+			break;
+		case "addAComment":
+			toggleForm();
 			break;
 		default:
 			break;
