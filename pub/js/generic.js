@@ -66,8 +66,8 @@ if (this.elitetoma) {
 	var handleClick = function(e) {
 		var targetId= e.target.getAttribute('id'),
 		// clean the id string, everything before a number
-		command = targetId.split('_', 2)[0],
-		id = targetId.split('_', 2)[1];
+		command = (targetId)?targetId.split('_', 2)[0]:null;
+		id = (targetId)?targetId.split('_', 2)[1]:null;
 		switch (command) {
 		case "addComment": 
 			addCommentRequest();
