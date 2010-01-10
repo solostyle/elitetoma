@@ -13,6 +13,12 @@ class CommentsController extends Controller {
 		$this->set('comments',$this->Comment->search());
 	}
 
+    function all() {
+        //        index(); // or copy the lines from that function over? only the views differ
+        $this->Comment->orderBy('id','DESC');
+		$this->set('comments',$this->Comment->search());
+    }
+
 /*doesn't like longtext. had to change the comment to be varchar(255) */
 	function add() {
         $this->doNotRenderHeader = true; /* i want this to be an ajax request*/

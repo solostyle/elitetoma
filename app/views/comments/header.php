@@ -25,7 +25,7 @@ border:1px solid #eee;
     background-color:#bcfc3d;
 }
 
-#form {
+#commentsForm {
 display:none;
 }
 

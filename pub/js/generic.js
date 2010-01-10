@@ -14,26 +14,25 @@ if (this.elitetoma) {
 	};
 
 	// Elements
-	var divElem = ydom.get('container'),
+	var commentsDivElem = ydom.get('comments'),
 	inpComment = function() {return ydom.get('comment').value;},
 	inpName = function() {return ydom.get('name').value;},
-	addDiv = ydom.get('addAComment'),
-	formDiv = ydom.get('form');
+	formDivElem = ydom.get('commentsForm');
 
 	// Success and failure functions for different requests
 	var handleSuccess = function(o){
-		var indexRequest = ajaxR('../comments/index',indexCallback);
+		allRequest();
 	};
 
 	var handleFailure = function(o){
 		if(o.responseText !== undefined){
-			divElem.innerHTML = "request failure: " + o.responseText + divElem.innerHTML;
+			commentsDivElem.innerHTML = "request failure: " + o.responseText + commentsDivElem.innerHTML;
 		}
 	};
 
-	var handleIndexSuccess = function(o) {
+	var handleAllSuccess = function(o) {
 		if(o.responseText !== undefined){
-			divElem.innerHTML = o.responseText;
+			commentsDivElem.innerHTML = o.responseText;
 		}
 	};
 
@@ -44,9 +43,9 @@ if (this.elitetoma) {
 		failure: handleFailure
 	};
 
-	var indexCallback ={
+	var allCallback ={
 		method:"GET",
-		success: handleIndexSuccess,
+		success: handleAllSuccess,
 		failure: handleFailure
 	};
 
@@ -61,12 +60,12 @@ if (this.elitetoma) {
 		var deleteRequest = ajaxR('../comments/delete', callback);
 	};
 
-	var indexRequest = function() {
-		var indexRequest = ajaxR('../comments/index', indexCallback);
+	var allRequest = function() {
+		var allRequest = ajaxR('../comments/all', allCallback);
 	};
 
 	var toggleForm = function() {
-		formDiv.style.display=(formDiv.style.display=='none')?'block':'none';
+		formDivElem.style.display=(formDivElem.style.display=='none')?'block':'none';
 	};
 
 	var handleClick = function(e) {
@@ -89,7 +88,7 @@ if (this.elitetoma) {
 		}
 	};
 
-	// Make a request when the button is clicked:
+	// Listen to all clicks in this web part
 	listen("click", handleClick, "container");
 
 }();
