@@ -18,7 +18,10 @@ if (this.elitetoma.comments) {
 	commentsWebPartElem = ydom.get('commentsWP'),
 	inpComment = function() {return ydom.get('comment').value;},
 	inpName = function() {return ydom.get('name').value;},
-	formDivElem = ydom.get('commentsForm');
+	formDivElem = ydom.get('commentsForm'),
+	formToggleDivElem = ydom.get('addAComment'),
+	formNameElem = ydom.get('name'),
+	formCommentElem = ydom.get('comment');
 
 	// Success and failure functions for different requests
 	var handleSuccess = function(o){
@@ -66,7 +69,13 @@ if (this.elitetoma.comments) {
 	};
 
 	var toggleForm = function() {
-		formDivElem.style.display = (formDivElem.style.display=='' || formDivElem.style.display=='none')?'block':'';
+		// todo: there's got to be a better way to reset these.
+		formDivElem.style.display = (formDivElem.style.display=='block')?'':'block';
+		formToggleDivElem.innerHTML = (formDivElem.style.display=='block')?'Close':'Add a Comment';
+		if (formDivElem.style.display=='') {
+			formNameElem.value = 'name';
+			formCommentElem.value = 'comment';
+		}
 	};
 
 	var handleClick = function(e) {
