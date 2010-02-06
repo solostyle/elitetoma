@@ -6,7 +6,7 @@
      <input type="button" id="addComment" value="add"/></p>
      </div><!-- end form div -->
 
-<div id="comments">
+<div id="commentsWP">
 
      <?php foreach ($comments as $c):?>
      

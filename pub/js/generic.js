@@ -9,12 +9,12 @@ if (this.elitetoma) {
 		ycnxn.asyncRequest(callback.method, url, callback, callback.data);
 	},
 	yevent = YAHOO.util.Event,
-	listen = function (event, fn, elid) {
-		yevent.addListener(ydom.get(elid), event, fn);
+	listen = function (event, fn, el) {
+		yevent.addListener(el, event, fn);
 	};
 
 	// Elements
-	var commentsDivElem = ydom.get('comments'),
+	var commentsDivElem = ydom.get('commentsWP'),
 	inpComment = function() {return ydom.get('comment').value;},
 	inpName = function() {return ydom.get('name').value;},
 	formDivElem = ydom.get('commentsForm');
@@ -89,6 +89,6 @@ if (this.elitetoma) {
 	};
 
 	// Listen to all clicks in this web part
-	listen("click", handleClick, "container");
+	listen("click", handleClick, commentsDivElem);
 
 }();
