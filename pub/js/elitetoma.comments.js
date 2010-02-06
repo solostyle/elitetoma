@@ -9,12 +9,13 @@ if (this.elitetoma.comments) {
 		ycnxn.asyncRequest(callback.method, url, callback, callback.data);
 	},
 	yevent = YAHOO.util.Event,
-	listen = function (event, fn, el) {
-		yevent.addListener(el, event, fn);
+	listen = function (event, fn, elid) {
+		yevent.addListener(ydom.get(elid), event, fn);
 	};
 
 	// Elements
-	var commentsDivElem = ydom.get('commentsWP'),
+	var commentsDivElem = ydom.get('comments'),
+	commentsWebPartElem = ydom.get('commentsWP'),
 	inpComment = function() {return ydom.get('comment').value;},
 	inpName = function() {return ydom.get('name').value;},
 	formDivElem = ydom.get('commentsForm');
@@ -65,7 +66,7 @@ if (this.elitetoma.comments) {
 	};
 
 	var toggleForm = function() {
-		formDivElem.style.display=(formDivElem.style.display=='none')?'block':'none';
+		formDivElem.style.display = (formDivElem.style.display=='' || formDivElem.style.display=='none')?'block':'';
 	};
 
 	var handleClick = function(e) {
@@ -89,6 +90,6 @@ if (this.elitetoma.comments) {
 	};
 
 	// Listen to all clicks in this web part
-	listen("click", handleClick, commentsDivElem);
+	listen("click", handleClick, 'commentsWP');
 
 }();
