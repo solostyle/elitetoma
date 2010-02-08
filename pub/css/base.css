@@ -1,0 +1,59 @@
+body {
+	margin:10px;
+    background-color:#fff;
+	color:#666;
+}
+p {
+    line-height:1.5em;
+	font: normal normal normal 12px Georgia, serif;
+}
+
+.id {
+    float:right;
+}
+
+.name {
+    font-style:italic;
+    float:left;
+	padding-right:5px;
+}
+
+.time {
+    float:left;
+}
+
+.text {
+	clear:both;
+	padding:10px;
+}
+
+input, textarea {
+	color:#666;
+    background-color:#fff;
+    font-family:georgia,times;
+    font-size:14px;
+    font-weight:normal;
+	border:1px solid #ccc;
+	padding:2px;
+}
+
+input:focus {
+	border:1px solid #bcfc3d;
+}
+
+a {
+	color:#666;
+    font-family:georgia,times;
+    font-weight:bold;
+	text-decoration:none;
+}
+
+a:hover {
+	border-bottom:1px solid black;
+	cursor:pointer;
+}
+
+h1 {
+    font-size:16px;
+    text-align:center;
+}

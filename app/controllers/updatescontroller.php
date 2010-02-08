@@ -15,7 +15,7 @@ class UpdatesController extends Controller {
 
 /*doesn't like longtext. had to change the comment to be varchar(255) */
 	function add() {
-        $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
+        $this->doNotRenderHeader = true;
 		$this->Update->update = $_POST['update'];
 		$this->Update->name = $_POST['name'];
 		$this->Update->save();

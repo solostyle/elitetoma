@@ -1,1 +1,1 @@
-Comment successfully deleted.
+Update successfully deleted.

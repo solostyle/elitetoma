@@ -1,0 +1,45 @@
+#updatesWP {
+	margin:10px auto;
+	width:250px;
+}
+
+#addAnUpdate {
+	border:1px solid #eee;
+}
+
+#addAnUpdate:hover {
+    background-color:#bcfc3d;
+}
+
+#updatesForm {
+	display:none;
+}
+
+.update {
+	font:normal normal normal 12px Georgia, serif;
+    background-color:#eee;
+	color:#666;
+	padding:5px;
+	margin:10px 0px;
+}
+
+.update:hover {
+    background-color:#bcfc3d;
+}
+
+input#addUpdate {
+	color:#666;
+    background-color:#fff;
+	border:1px solid #ccc;
+}
+
+input#addUpdate:hover {
+    background-color:#bcfc3d;
+}
+
+#addAnUpdate h1 {
+    font-size:14px;
+    letter-spacing:-2px;
+    text-align:center;
+	font-weight:normal;
+}
