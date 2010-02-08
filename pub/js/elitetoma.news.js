@@ -1,14 +1,13 @@
-this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
+this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 
 	// Elements
-	var commentsDivElem = Ydom.get('comments'),
-	commentsWebPartElem = Ydom.get('commentsWP'),
+	var updatesDivElem = Ydom.get('updates'),
 	formNameElem = Ydom.get('name'),
-	formCommentElem = Ydom.get('comment'),
-	inpComment = function() {return formCommentElem.value;}, // TODO: escape quotes!
-	inpName = function() {return formNameElem.value;}, // TODO: escape quotes!
-	formDivElem = Ydom.get('commentsForm'),
-	formToggleDivElem = Ydom.get('addAComment');
+	formUpdateElem = Ydom.get('update'),
+	inpUpdate = function() {return formUpdateElem.value;},
+	inpName = function() {return formNameElem.value;},
+	formDivElem = Ydom.get('updatesForm'),
+	formToggleDivElem = Ydom.get('addAnUpdate');
 
 	// Success and failure functions for different requests
 	var handleSuccess = function(o){
@@ -17,13 +16,13 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 
 	var handleFailure = function(o){
 		if(o.responseText !== undefined){
-			commentsDivElem.innerHTML = "request failure: " + o.responseText + commentsDivElem.innerHTML;
+			updatesDivElem.innerHTML = "request failure: " + o.responseText + updatesDivElem.innerHTML;
 		}
 	};
 
 	var handleAllSuccess = function(o) {
 		if(o.responseText !== undefined){
-			commentsDivElem.innerHTML = o.responseText;
+			updatesDivElem.innerHTML = o.responseText;
 		}
 	};
 
@@ -41,27 +40,27 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 	};
 
 	//Handler to make XHR request for adding a comment
-	var addCommentRequest = function(){
-		callback.data = 'comment='+inpComment()+'&name='+inpName();
-		var addRequest = AjaxR('../comments/add', callback);
+	var addUpdateRequest = function(){
+		callback.data = 'update='+inpUpdate()+'&name='+inpName(); // TODO: check this out!
+		var addRequest = AjaxR('../updates/add', callback);
 	};
 
-	var deleteCommentRequest = function(id) {
+	var deleteUpdateRequest = function(id) {
 		callback.data = 'id='+id;
-		var deleteRequest = AjaxR('../comments/delete', callback);
+		var deleteRequest = AjaxR('../updates/delete', callback);
 	};
 
 	var allRequest = function() {
-		var allRequest = AjaxR('../comments/all', allCallback);
+		var allRequest = AjaxR('../updates/all', allCallback);
 	};
 
 	var toggleForm = function() {
 		// todo: there's got to be a better way to reset these.
 		formDivElem.style.display = (formDivElem.style.display=='block')?'':'block';
-		formToggleDivElem.innerHTML = (formDivElem.style.display=='block')?'Close':'Add a Comment';
+		formToggleDivElem.innerHTML = (formDivElem.style.display=='block')?'Close':'Add an Update';
 		if (formDivElem.style.display=='') {
-			formNameElem.value = 'name';
-			formCommentElem.value = 'comment';
+			formNameElem.value = '';
+			formUpdateElem.value = '';
 		}
 	};
 
@@ -71,13 +70,13 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 		command = (targetId)?targetId.split('_', 2)[0]:null;
 		id = (targetId)?targetId.split('_', 2)[1]:null;
 		switch (command) {
-		case "addComment": 
-			addCommentRequest();
+		case "addUpdate": 
+			addUpdateRequest();
 			break;
-		case "deleteComment":
-			deleteCommentRequest(id);
+		case "deleteUpdate":
+			deleteUpdateRequest(id);
 			break;
-		case "addAComment":
+		case "addAnUpdate":
 			toggleForm();
 			break;
 		default:
@@ -86,6 +85,6 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 	};
 
 	// Listen to all clicks in this web part
-	Listen("click", handleClick, 'commentsWP');
+	Listen("click", handleClick, 'updatesWP');
 
 }();
