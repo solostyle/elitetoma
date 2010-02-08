@@ -20,6 +20,7 @@ class CommentsController extends Controller {
     }
 
 /*doesn't like longtext. had to change the comment to be varchar(255) */
+/* make sure ID is big enough */
 	function add() {
         $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
 		$this->Comment->comment = $_POST['comment'];
