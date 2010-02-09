@@ -7,8 +7,9 @@ $routing = array(
 );
 
 /* If the root domain name is requested
-   e.g. test.solostyle.net/
-   then this is where they will be directed
-**/
-$default['controller'] = 'comments';
+ * e.g. test.solostyle.net/
+ * then this is where they will be directed
+ */
+//$default['controller'] = 'comments';
+$default['controller'] = 'shells';
 $default['action'] = 'index';

@@ -98,6 +98,7 @@ function CallHook() {
 	$queryString = array();
 
 	if (!isset($url)) {
+        // Go to the home page
 		$controller = $default['controller'];
 		$action = $default['action'];
 	} else {
@@ -117,6 +118,8 @@ function CallHook() {
 	
 	$controllerName = ucfirst($controller).'Controller';
 
+    /* TODO: make sure $controllerName exists before using it */
+    /* If it doesn't exist, use the routing table */
 	$dispatch = new $controllerName($controller,$action);
 	
 	if ((int)method_exists($controllerName, $action)) {
@@ -128,8 +131,12 @@ function CallHook() {
             call_user_func_array(array($dispatch,"afterAction"),$queryString);
         }
 	} else {
-		/* Error Generation Code Here */
+        /* The controller does not have the action specified */
+        /* Here we decouple controller and action and look up the URL in the routing table */
+        /* look up the url in the routing table */
+        /* if it exists, use the controller and action specified */
 	}
+    /* if there's no controller/action or a routing table match, use default, or throw 404 error */
 }
 
 /** Autoload any classes that are required **/

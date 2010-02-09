@@ -27,6 +27,7 @@ class Controller {
 	}
 
 	function __destruct() {
+        // the base controller class will always render a view
         if ($this->render) {
             $this->_template->render($this->doNotRenderHeader);
         }

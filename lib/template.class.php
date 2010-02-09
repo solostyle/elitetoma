@@ -35,8 +35,12 @@ class Template {
 		}
 
 		if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . $this->_action . '.php')) {
-			include (ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . $this->_action . '.php');		 
-		}
+			include (ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . $this->_action . '.php');
+		} else {
+            // if it's not in the given controller, look for it in the shared elements folder
+            // although I don't think this is how I will be using this
+            include (ROOT . DS . 'app' . DS . 'views' . DS . 'elements' . DS . $this->_action . '.php');
+        }
 			
 		if ($doNotRenderHeader == false) {
 			if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . 'footer.php')) {
