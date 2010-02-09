@@ -5,6 +5,7 @@
      <?php echo $html->includeJs('yui27connection');?>
      <?php echo $html->includeJs('yui27dom');?>
      <?php echo $html->includeJs('elitetoma');?>
+     <?php echo $html->includeJs('elitetoma.shell');?>
      <?php echo $html->includeJs('elitetoma.comments');?>
      <?php echo $html->includeJs('elitetoma.updates');?>
 </body>

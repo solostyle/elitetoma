@@ -2,13 +2,12 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 
 	// Elements
 	var commentsDivElem = Ydom.get('comments'),
-	commentsWebPartElem = Ydom.get('commentsWP'),
-	formNameElem = Ydom.get('name'),
-	formCommentElem = Ydom.get('comment'),
+	formNameElem = function() {return Ydom.get('name');},
+	formCommentElem = function() {return Ydom.get('comment');},
 	inpComment = function() {return formCommentElem.value;}, // TODO: escape quotes!
 	inpName = function() {return formNameElem.value;}, // TODO: escape quotes!
-	formDivElem = Ydom.get('commentsForm'),
-	formToggleDivElem = Ydom.get('addAComment');
+	formDivElem = function() {return Ydom.get('commentsForm');},
+	formToggleDivElem = function() {return Ydom.get('addAComment');};
 
 	// Success and failure functions for different requests
 	var handleSuccess = function(o){
@@ -55,13 +54,17 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 		var allRequest = AjaxR('../comments/all', allCallback);
 	};
 
+	var indexRequest = function() {
+		var indexRequest = AjaxR('../comments/index', allCallback);
+	};
+
 	var toggleForm = function() {
 		// todo: there's got to be a better way to reset these.
-		formDivElem.style.display = (formDivElem.style.display=='block')?'':'block';
-		formToggleDivElem.innerHTML = (formDivElem.style.display=='block')?'Close':'Add a Comment';
-		if (formDivElem.style.display=='') {
-			formNameElem.value = 'name';
-			formCommentElem.value = 'comment';
+		formDivElem().style.display = (formDivElem().style.display=='block')?'':'block';
+		formToggleDivElem().innerHTML = (formDivElem().style.display=='block')?'Close':'Add a Comment';
+		if (formDivElem().style.display=='') {
+			formNameElem().value = 'name';
+			formCommentElem().value = 'comment';
 		}
 	};
 
@@ -85,7 +88,17 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 		}
 	};
 
-	// Listen to all clicks in this web part
-	Listen("click", handleClick, 'commentsWP');
+	return {
+		
+		Load: function(){
+			// initial load
+			indexRequest();
+
+			// set event handle for clicks in the web part
+			Listen("click", handleClick, 'commentsWP');
+		}
+	};
 
 }();
+
+this.Elitetoma.Comments.Load();

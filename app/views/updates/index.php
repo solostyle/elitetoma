@@ -1,4 +1,3 @@
-<div id="updatesWP"> 
      <h1 id="addAnUpdate">Add an Update</h1>
      <div id="updatesForm">
      <p><input type="text" value="name" id="name"/></p>
@@ -21,4 +20,3 @@
          <?php endforeach?>
 
      </div>
-</div>

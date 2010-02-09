@@ -54,6 +54,10 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 		var allRequest = AjaxR('../updates/all', allCallback);
 	};
 
+	var indexRequest = function() {
+		var indexRequest = AjaxR('../updates/index', allCallback);
+	};
+
 	var toggleForm = function() {
 		// todo: there's got to be a better way to reset these.
 		formDivElem.style.display = (formDivElem.style.display=='block')?'':'block';
@@ -84,7 +88,17 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 		}
 	};
 
-	// Listen to all clicks in this web part
-	Listen("click", handleClick, 'updatesWP');
+	return {
+		
+		Load: function(){
+			// initial load
+			indexRequest();
+
+			// set event handle for clicks in the web part
+			Listen("click", handleClick, 'updatesWP');
+		}
+	};
 
 }();
+
+this.Elitetoma.Updates.Load();
