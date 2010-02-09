@@ -2,12 +2,12 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 
 	// Elements
 	var updatesDivElem = Ydom.get('updates'),
-	formNameElem = Ydom.get('name'),
-	formUpdateElem = Ydom.get('update'),
+	formNameElem = function() {return Ydom.get('name');},
+	formUpdateElem = function() {return Ydom.get('update');},
 	inpUpdate = function() {return formUpdateElem.value;},
 	inpName = function() {return formNameElem.value;},
-	formDivElem = Ydom.get('updatesForm'),
-	formToggleDivElem = Ydom.get('addAnUpdate');
+	formDivElem = function() {return Ydom.get('updatesForm');},
+	formToggleDivElem = function() {return Ydom.get('addAnUpdate');};
 
 	// Success and failure functions for different requests
 	var handleSuccess = function(o){
@@ -60,11 +60,11 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 
 	var toggleForm = function() {
 		// todo: there's got to be a better way to reset these.
-		formDivElem.style.display = (formDivElem.style.display=='block')?'':'block';
-		formToggleDivElem.innerHTML = (formDivElem.style.display=='block')?'Close':'Add an Update';
-		if (formDivElem.style.display=='') {
-			formNameElem.value = '';
-			formUpdateElem.value = '';
+		formDivElem().style.display = (formDivElem().style.display=='block')?'':'block';
+		formToggleDivElem().innerHTML = (formDivElem().style.display=='block')?'Close':'Add an Update';
+		if (formDivElem().style.display=='') {
+			formNameElem().value = '';
+			formUpdateElem().value = '';
 		}
 	};
 

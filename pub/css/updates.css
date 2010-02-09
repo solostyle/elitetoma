@@ -10,6 +10,7 @@
 
 #addAnUpdate:hover {
     background-color:#bcfc3d;
+	cursor:pointer;
 }
 
 #updatesForm {
