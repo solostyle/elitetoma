@@ -55,7 +55,7 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 	};
 
 	var indexRequest = function() {
-		var indexRequest = AjaxR('../updates/index', allCallback);
+		var indexRequest = AjaxR('../updates/index/true', allCallback);
 	};
 
 	var toggleForm = function() {

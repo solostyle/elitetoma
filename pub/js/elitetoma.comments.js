@@ -55,7 +55,7 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 	};
 
 	var indexRequest = function() {
-		var indexRequest = AjaxR('../comments/index', allCallback);
+		var indexRequest = AjaxR('../comments/index/true', allCallback);
 	};
 
 	var toggleForm = function() {
