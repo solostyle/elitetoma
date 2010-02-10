@@ -1,7 +1,7 @@
      <h1 id="addAnUpdate">Add an Update</h1>
      <div id="updatesForm">
-     <p><input type="text" value="name" id="name"/></p>
-     <p><textarea rows="2" cols="25" id="update"></textarea></p>
+     <p><input type="text" value="name" id="updatesWPName"/></p>
+     <p><textarea rows="2" cols="25" id="updatesWPUpdate"></textarea></p>
      <p><input type="button" id="addUpdate" value="add"/></p>
      </div><!-- end form div -->
 

@@ -3,10 +3,10 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 	// Elements
 	var updatesWPElem = Ydom.get('updatesWP'),
 	updatesElem = function() {return Ydom.get('updates');},
-	formNameElem = function() {return Ydom.get('name');},
-	formUpdateElem = function() {return Ydom.get('update');},
-	inpUpdate = function() {return formUpdateElem.value;},
-	inpName = function() {return formNameElem.value;},
+	formNameElem = function() {return Ydom.get('updatesWPName');},
+	formUpdateElem = function() {return Ydom.get('updatesWPUpdate');},
+	inpUpdate = function() {return formUpdateElem().value;},
+	inpName = function() {return formNameElem().value;},
 	formDivElem = function() {return Ydom.get('updatesForm');},
 	formToggleDivElem = function() {return Ydom.get('addAnUpdate');};
 

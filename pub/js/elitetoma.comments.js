@@ -3,10 +3,10 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 	// Elements
 	var commentsWPElem = Ydom.get('commentsWP'),
 	commentsElem = function() {return Ydom.get('comments');},
-	formNameElem = function() {return Ydom.get('name');},
-	formCommentElem = function() {return Ydom.get('comment');},
-	inpComment = function() {return formCommentElem.value;}, // TODO: escape quotes!
-	inpName = function() {return formNameElem.value;}, // TODO: escape quotes!
+	formNameElem = function() {return Ydom.get('commentsWPName');},
+	formCommentElem = function() {return Ydom.get('commentsWPComment');},
+	inpComment = function() {return formCommentElem().value;}, // TODO: escape quotes!
+	inpName = function() {return formNameElem().value;}, // TODO: escape quotes!
 	formDivElem = function() {return Ydom.get('commentsForm');},
 	formToggleDivElem = function() {return Ydom.get('addAComment');};
 
