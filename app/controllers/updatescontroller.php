@@ -9,7 +9,7 @@ class UpdatesController extends Controller {
 	}
 
     function all() {
-        //        index(); // or copy the lines from that function over? only the views differ
+        $this->doNotRenderHeader = true;
         $this->Update->orderBy('id','DESC');
 		$this->set('updates',$this->Update->search());
     }

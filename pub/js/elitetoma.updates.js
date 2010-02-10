@@ -1,7 +1,8 @@
 this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 
 	// Elements
-	var updatesDivElem = Ydom.get('updates'),
+	var updatesWPElem = Ydom.get('updatesWP'),
+	updatesElem = function() {return Ydom.get('updates');},
 	formNameElem = function() {return Ydom.get('name');},
 	formUpdateElem = function() {return Ydom.get('update');},
 	inpUpdate = function() {return formUpdateElem.value;},
@@ -16,13 +17,19 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 
 	var handleFailure = function(o){
 		if(o.responseText !== undefined){
-			updatesDivElem.innerHTML = "request failure: " + o.responseText + updatesDivElem.innerHTML;
+			updatesWPElem.innerHTML = "request failure: " + o.responseText + updatesWPElem.innerHTML;
 		}
 	};
 
 	var handleAllSuccess = function(o) {
 		if(o.responseText !== undefined){
-			updatesDivElem.innerHTML = o.responseText;
+			updatesElem().innerHTML = o.responseText;
+		}
+	};
+
+	var handleIndexSuccess = function(o) {
+		if(o.responseText !== undefined){
+			updatesWPElem.innerHTML = o.responseText;
 		}
 	};
 
@@ -36,6 +43,12 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 	var allCallback ={
 		method:"GET",
 		success: handleAllSuccess,
+		failure: handleFailure
+	};
+
+	var indexCallback ={
+		method:"GET",
+		success: handleIndexSuccess,
 		failure: handleFailure
 	};
 
@@ -55,7 +68,7 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 	};
 
 	var indexRequest = function() {
-		var indexRequest = AjaxR('../updates/index/true', allCallback);
+		var indexRequest = AjaxR('../updates/index/true', indexCallback);
 	};
 
 	var toggleForm = function() {

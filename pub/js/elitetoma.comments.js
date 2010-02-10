@@ -1,7 +1,8 @@
 this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 
 	// Elements
-	var commentsDivElem = Ydom.get('comments'),
+	var commentsWPElem = Ydom.get('commentsWP'),
+	commentsElem = function() {return Ydom.get('comments');},
 	formNameElem = function() {return Ydom.get('name');},
 	formCommentElem = function() {return Ydom.get('comment');},
 	inpComment = function() {return formCommentElem.value;}, // TODO: escape quotes!
@@ -16,13 +17,19 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 
 	var handleFailure = function(o){
 		if(o.responseText !== undefined){
-			commentsDivElem.innerHTML = "request failure: " + o.responseText + commentsDivElem.innerHTML;
+			commentsWPElem.innerHTML = "request failure: " + o.responseText + commentsWPElem.innerHTML;
 		}
 	};
 
 	var handleAllSuccess = function(o) {
 		if(o.responseText !== undefined){
-			commentsDivElem.innerHTML = o.responseText;
+			commentsElem().innerHTML = o.responseText;
+		}
+	};
+
+	var handleIndexSuccess = function(o) {
+		if(o.responseText !== undefined){
+			commentsWPElem.innerHTML = o.responseText;
 		}
 	};
 
@@ -36,6 +43,12 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 	var allCallback ={
 		method:"GET",
 		success: handleAllSuccess,
+		failure: handleFailure
+	};
+
+	var indexCallback = {
+		method:"GET",
+		success: handleIndexSuccess,
 		failure: handleFailure
 	};
 
@@ -55,7 +68,7 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 	};
 
 	var indexRequest = function() {
-		var indexRequest = AjaxR('../comments/index/true', allCallback);
+		var indexRequest = AjaxR('../comments/index/true', indexCallback);
 	};
 
 	var toggleForm = function() {
