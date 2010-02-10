@@ -57,3 +57,14 @@ h1 {
     font-size:16px;
     text-align:center;
 }
+
+.webpart {
+	margin:10px;
+}
+
+.webpart h1 {
+    font-size:14px;
+    letter-spacing:-2px;
+    text-align:center;
+	font-weight:normal;
+}

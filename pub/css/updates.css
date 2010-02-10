@@ -1,5 +1,4 @@
 #updatesWP {
-	margin:10px;
 	float:left;
 	width:250px;
 }
@@ -37,11 +36,4 @@ input#addUpdate {
 
 input#addUpdate:hover {
     background-color:#bcfc3d;
-}
-
-#addAnUpdate h1 {
-    font-size:14px;
-    letter-spacing:-2px;
-    text-align:center;
-	font-weight:normal;
 }
