@@ -100,5 +100,3 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 	};
 
 }();
-
-this.Elitetoma.Updates.Load();

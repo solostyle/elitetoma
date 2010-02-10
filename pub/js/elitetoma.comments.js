@@ -100,5 +100,3 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 	};
 
 }();
-
-this.Elitetoma.Comments.Load();
