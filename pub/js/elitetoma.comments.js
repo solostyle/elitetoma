@@ -12,7 +12,7 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 
 	// Success and failure functions for different requests
 	var handleSuccess = function(o){
-		allRequest();
+		allRequest(false);
 	};
 
 	var handleFailure = function(o){
@@ -27,7 +27,7 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 		}
 	};
 
-	var handleIndexSuccess = function(o) {
+	var handleAllFormSuccess = function(o) {
 		if(o.responseText !== undefined){
 			commentsWPElem.innerHTML = o.responseText;
 		}
@@ -46,29 +46,26 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 		failure: handleFailure
 	};
 
-	var indexCallback = {
+	var allFormCallback = {
 		method:"GET",
-		success: handleIndexSuccess,
+		success: handleAllFormSuccess,
 		failure: handleFailure
 	};
 
 	//Handler to make XHR request for adding a comment
 	var addCommentRequest = function(){
 		callback.data = 'comment='+inpComment()+'&name='+inpName();
-		var addRequest = AjaxR('../comments/add', callback);
+		var request = AjaxR('../comments/add', callback);
 	};
 
 	var deleteCommentRequest = function(id) {
 		callback.data = 'id='+id;
-		var deleteRequest = AjaxR('../comments/delete', callback);
+		var request = AjaxR('../comments/delete', callback);
 	};
 
-	var allRequest = function() {
-		var allRequest = AjaxR('../comments/all', allCallback);
-	};
-
-	var indexRequest = function() {
-		var indexRequest = AjaxR('../comments/index/true', indexCallback);
+	var allRequest = function(includeForm) {
+		if (includeForm) AjaxR('../comments/all/1', allFormCallback);
+		else AjaxR('../comments/all/0', allCallback);
 	};
 
 	var toggleForm = function() {
@@ -105,7 +102,7 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 		
 		Load: function(){
 			// initial load
-			indexRequest();
+			allRequest(true);
 
 			// set event handle for clicks in the web part
 			Listen("click", handleClick, 'commentsWP');

@@ -8,16 +8,16 @@ class CommentsController extends Controller {
 		$this->set('comment',$comment);
 	}
 
-	function index($isAjaxR) {
-        if ($isAjaxR) $this->doNotRenderHeader = true;
+	function index() {
         $this->Comment->orderBy('id','DESC');
 		$this->set('comments',$this->Comment->search());
 	}
 
-    function all() {
+    function all($includeForm) {
         $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
         $this->Comment->orderBy('id','DESC');
 		$this->set('comments',$this->Comment->search());
+        $this->set('includeForm',$includeForm);  // looks like this has to be defined
     }
 
 /*doesn't like longtext. had to change the comment to be varchar(255) */
