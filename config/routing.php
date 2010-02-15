@@ -1,10 +1,10 @@
 <?php
 
 $routing = array(
-	'/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1_\2/\3'
-	/* keep these separated by slashes */
-	/* '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1/\2/\3' */
-);
+                 '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1_\2/\3'
+                 /* keep these separated by slashes */
+                 /* '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1/\2/\3' */
+                 );
 
 /* If the root domain name is requested
  * e.g. test.solostyle.net/

@@ -91,7 +91,7 @@ function routeURL($url) {
 }
 
 /** Main Call Function **/
-function CallHook() {
+function DetermineRequest() {
 	global $url;
 	global $default;
 
@@ -105,21 +105,26 @@ function CallHook() {
 		$url = routeURL($url);
 		$urlArray = array();
 		$urlArray = explode("/",$url);
-		$controller = $urlArray[0];
+		$controller = $urlArray[0]; // Save off the controller
+
 		array_shift($urlArray);
 		if (isset($urlArray[0])) {
-			$action = $urlArray[0];
-			array_shift($urlArray);
+            if (is_numeric($urlArray[0])) {
+                $action = 'view';
+            } else {
+                $action = $urlArray[0];
+                array_shift($urlArray);
+            }
+            $queryString = $urlArray;
 		} else {
 			$action = 'index'; // Default Action
 		}
-		$queryString = $urlArray;
 	}
 	
 	$controllerName = ucfirst($controller).'Controller';
 
-    /* TODO: make sure $controllerName exists before using it */
-    /* If it doesn't exist, use the routing table */
+    /* __autoload() checks that $controllerName exists
+     * If it doesn't exist, echoes error */
 	$dispatch = new $controllerName($controller,$action);
 	
 	if ((int)method_exists($controllerName, $action)) {
@@ -149,6 +154,7 @@ function __autoload($className) {
 		require_once(ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php');
 	} else {
 		/* Error Generation Code Here */
+        echo 'error: class $className not found';
 	}
 }
 
@@ -179,4 +185,4 @@ $inflect =& new Inflection();
 SetReporting();
 RemoveMagicQuotes();
 UnregisterGlobals();
-CallHook();
+DetermineRequest();
