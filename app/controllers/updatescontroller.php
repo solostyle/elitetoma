@@ -2,7 +2,7 @@
 
 class UpdatesController extends Controller {
 
-	function index($isAjaxR) {
+	function index($isAjaxR=false) {
         if ($isAjaxR) $this->doNotRenderHeader = true;
         $this->Update->orderBy('id','DESC');
 		$this->set('updates',$this->Update->search());

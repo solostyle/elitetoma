@@ -8,7 +8,8 @@ class CommentsController extends Controller {
 		$this->set('comment',$comment);
 	}
 
-	function index() {
+	function index($isAjaxR=false) {
+        if ($isAjaxR) $this->doNotRenderHeader = true;
         $this->Comment->orderBy('id','DESC');
 		$this->set('comments',$this->Comment->search());
 	}
