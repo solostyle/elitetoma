@@ -76,8 +76,8 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 		formDivElem().style.display = (formDivElem().style.display=='block')?'':'block';
 		formToggleDivElem().innerHTML = (formDivElem().style.display=='block')?'Close':'Add an Update';
 		if (formDivElem().style.display=='') {
-			formNameElem().value = '';
-			formUpdateElem().value = '';
+			formNameElem().value = 'name';
+			formUpdateElem().value = 'update';
 		}
 	};
 
