@@ -69,12 +69,14 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 	};
 
 	var toggleForm = function() {
-		// todo: there's got to be a better way to reset these.
+		// save off the current values of the input boxes
+		var currNameVal = formNameElem().value || 'name';
+		var currCommentVal = formCommentElem().value || 'comment';
 		formDivElem().style.display = (formDivElem().style.display=='block')?'':'block';
 		formToggleDivElem().innerHTML = (formDivElem().style.display=='block')?'Close':'Add a Comment';
 		if (formDivElem().style.display=='') {
-			formNameElem().value = 'name';
-			formCommentElem().value = 'comment';
+			formNameElem().value = currNameVal;
+			formCommentElem().value = currCommentVal;
 		}
 	};
 

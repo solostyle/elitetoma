@@ -72,12 +72,14 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 	};
 
 	var toggleForm = function() {
-		// todo: there's got to be a better way to reset these.
+		// save off the current values of the input boxes
+		var currNameVal = formNameElem().value || 'name';
+		var currUpdateVal = formUpdateElem().value || 'update';
 		formDivElem().style.display = (formDivElem().style.display=='block')?'':'block';
 		formToggleDivElem().innerHTML = (formDivElem().style.display=='block')?'Close':'Add an Update';
 		if (formDivElem().style.display=='') {
-			formNameElem().value = 'name';
-			formUpdateElem().value = 'update';
+			formNameElem().value = currNameVal;
+			formUpdateElem().value = currUpdateVal;
 		}
 	};
 
