@@ -1,8 +1,8 @@
 <html>
 <head>
 <title>Testing my own MVC</title>
-<link rel="StyleSheet" href="../css/base.css" type="text/css" media="screen">
-<link rel="StyleSheet" href="../css/comments.css" type="text/css" media="screen">
-<link rel="StyleSheet" href="../css/updates.css" type="text/css" media="screen">
+<?php echo $html->includeCss('base');?>
+<?php echo $html->includeCss('comments');?>
+<?php echo $html->includeCss('updates');?>
 </head>
 <body>
