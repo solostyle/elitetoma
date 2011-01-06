@@ -1,7 +1,7 @@
 this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 
 	// Elements
-	var commentsWPElem = Ydom.get('commentsWP'),
+	var commentsWPElem = function() {return Ydom.get('commentsWP');};
 	commentsElem = function() {return Ydom.get('comments');},
 	formNameElem = function() {return Ydom.get('commentsWPName');},
 	formCommentElem = function() {return Ydom.get('commentsWPComment');},
@@ -17,7 +17,7 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 
 	var handleFailure = function(o){
 		if(o.responseText !== undefined){
-			commentsWPElem.innerHTML = "request failure: " + o.responseText + commentsWPElem.innerHTML;
+			commentsWPElem().innerHTML = "request failure: " + o.responseText + commentsWPElem().innerHTML;
 		}
 	};
 
@@ -29,7 +29,7 @@ this.Elitetoma.Comments = this.Elitetoma.Comments || function() {
 
 	var handleAllFormSuccess = function(o) {
 		if(o.responseText !== undefined){
-			commentsWPElem.innerHTML = o.responseText;
+			commentsWPElem().innerHTML = o.responseText;
 		}
 	};
 

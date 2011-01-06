@@ -1,7 +1,7 @@
 this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 
 	// Elements
-	var updatesWPElem = Ydom.get('updatesWP'),
+	var updatesWPElem = function() {return Ydom.get('updatesWP');};
 	updatesElem = function() {return Ydom.get('updates');},
 	formNameElem = function() {return Ydom.get('updatesWPName');},
 	formUpdateElem = function() {return Ydom.get('updatesWPUpdate');},
@@ -17,7 +17,7 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 
 	var handleFailure = function(o){
 		if(o.responseText !== undefined){
-			updatesWPElem.innerHTML = "request failure: " + o.responseText + updatesWPElem.innerHTML;
+			updatesWPElem().innerHTML = "request failure: " + o.responseText + updatesWPElem().innerHTML;
 		}
 	};
 
@@ -29,7 +29,7 @@ this.Elitetoma.Updates = this.Elitetoma.Updates || function() {
 
 	var handleIndexSuccess = function(o) {
 		if(o.responseText !== undefined){
-			updatesWPElem.innerHTML = o.responseText;
+			updatesWPElem().innerHTML = o.responseText;
 		}
 	};
 

@@ -5,7 +5,6 @@ this.Elitetoma.Shell = this.Elitetoma.Shell || function() {
 		//passed in as the third argument:
 		//type <string>, args <array>, customobject <object>
 		//"DOMReady", [], obj
-		if (console.log) console.log("onDomReady event fired.");
 		
 		// load comments web part
 		Elitetoma.Comments.Load();
@@ -21,5 +20,3 @@ this.Elitetoma.Shell = this.Elitetoma.Shell || function() {
 	};
 
 }();
-
-this.Elitetoma.Shell.LoadWebParts();
