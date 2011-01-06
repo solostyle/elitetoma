@@ -41,7 +41,7 @@ class Template {
             // although I don't think this is how I will be using this
             include (ROOT . DS . 'app' . DS . 'views' . DS . 'elements' . DS . $this->_action . '.php');
         }
-			
+		// Also do not render footer
 		if ($doNotRenderHeader == false) {
 			if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . 'footer.php')) {
 				include (ROOT . DS . 'app' . DS . 'views' . DS . $this->_controller . DS . 'footer.php');
